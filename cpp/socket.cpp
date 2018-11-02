@@ -18,7 +18,13 @@ int Socket::set_socket() {
   int optival = 1;
   if (setsockopt(this->listenfd, SOL_SOCKET, SO_REUSEADDR, &optival,
                  sizeof(optival)) < 0) {
-    std::cout << "setsockopt() failed." << std::endl;
+    std::cout << "setsockopt() NO_REUSEADDR failed." << std::endl;
+    close(listenfd);
+    return -1;
+  }
+  if (setsockopt(this->listenfd, SOL_SOCKET, SO_NOSIGPIPE, &optival,
+                 sizeof(optival)) < 0) {
+    std::cout << "setsockopt() NO_SIGPIPE failed." << std::endl;
     close(listenfd);
     return -1;
   }

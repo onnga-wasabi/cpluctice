@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 
+#include "config.h"
 #include "parser.h"
 
 std::vector<std::string> HTTP_PARSER::split(std::string str,
@@ -21,11 +22,13 @@ std::vector<std::string> HTTP_PARSER::split(std::string str,
   return v;
 }
 
-std::string HTTP_PARSER::load_file(std::string filename) {
+std::string HTTP_PARSER::loadFile(std::string filename) {
   std::ifstream ifs(filename);
   std::cout << "requested to " << filename << std::endl;
   if (ifs.fail()) {
-    std::cout << "laod " << filename << " failed." << std::endl;
+    std::cout << "load " << filename << " failed." << std::endl;
+    std::cout << std::endl;
+    return FILE_NOT_FOUND;
   }
   std::cout << std::endl;
   std::istreambuf_iterator<char> it(ifs);
@@ -34,7 +37,7 @@ std::string HTTP_PARSER::load_file(std::string filename) {
   return str;
 }
 
-std::string HTTP_PARSER::get_filename(std::string header) {
+std::string HTTP_PARSER::getFilename(std::string header) {
   auto lines  = HTTP_PARSER::split(header, '\n');
   auto blocks = HTTP_PARSER::split(lines[0], ' ');
   return blocks[1];

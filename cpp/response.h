@@ -9,7 +9,9 @@
 
 class HTTP_RESPONSE {
 public:
+  static std::string createResponse(std::string filename);
   static std::string status200(std::string filename);
+  static std::string status404(std::string filename);
 };
 
 #endif

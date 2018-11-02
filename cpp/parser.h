@@ -7,8 +7,8 @@
 class HTTP_PARSER {
 public:
   static std::vector<std::string> split(std::string str, const char literal);
-  static std::string get_filename(std::string filename);
-  static std::string load_file(std::string header);
+  static std::string getFilename(std::string filename);
+  static std::string loadFile(std::string header);
 };
 
 #endif
