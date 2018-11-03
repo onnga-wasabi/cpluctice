@@ -20,7 +20,7 @@ std::string HTTP_RESPONSE::status200(std::string body) {
       "content-type: text/html; charset=UTF-8;\n"
       "connection: close\n"
       "content-length: " +
-      std::to_string(body.length()) + "\n" + HEADER_SUFFIX;
+      std::to_string(body.length()) + HEADER_SUFFIX;
   return header + body;
 }
 
@@ -31,7 +31,7 @@ std::string HTTP_RESPONSE::status404(std::string body) {
       "content-length: " +
       std::to_string(body.length()) +
       "\n"
-      "connection: close\n" +
+      "connection: close" +
       HEADER_SUFFIX;
   return header + body;
 }
