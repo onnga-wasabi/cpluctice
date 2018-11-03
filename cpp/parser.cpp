@@ -38,7 +38,7 @@ std::string HTTP_PARSER::loadFile(std::string filename) {
 }
 
 std::string HTTP_PARSER::getFilename(std::string header) {
-  auto lines  = HTTP_PARSER::split(header, '\n');
-  auto blocks = HTTP_PARSER::split(lines[0], ' ');
+  std::vector<std::string> lines  = HTTP_PARSER::split(header, '\n');
+  std::vector<std::string> blocks = HTTP_PARSER::split(lines[0], ' ');
   return blocks[1];
 }

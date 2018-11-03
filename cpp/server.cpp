@@ -13,12 +13,13 @@ int http_server() {
 
   int client = -1;
 
-  while (1) {
+  for (;;) {
     if ((client = accept(socket.get_listenfd(), (struct sockaddr*)NULL, NULL)) <
         0) {
       std::perror("accept() failed.");
       exit(1);
     }
+    // Socket::set_keepalive(client);
 
     std::string header = "";
     memset(buf, 0, sizeof(buf));
@@ -43,7 +44,7 @@ int http_server() {
       } else {  // recvlen < 0
         std::perror("recv() failed.");
         close(client);
-        exit(1);
+        break;
       }
     }
     if (header == std::string("")) continue;
