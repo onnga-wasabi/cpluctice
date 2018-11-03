@@ -60,8 +60,8 @@ void Socket::set_socket() {
 }
 void Socket::set_keepalive(int socket) {
   int optival = 1;
-  int idle    = 3;
-  int intvl   = 1;
+  int idle    = 30;
+  int intvl   = 10;
   int keepcnt = 2;
 
   setsockopt(socket, SOL_SOCKET, SO_KEEPALIVE, &optival, sizeof(optival));
